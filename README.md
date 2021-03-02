@@ -12,15 +12,15 @@ A entrega do seu código deve ser feita no formato de PR para este repositório 
 
 ## Rotas esperadas
 
-GET /produtos
-GET /produtos?filter=NOME
-POST /produtos
-GET /produtos/:id
-PUT /produtos/:id
-DELETE /produtos/:id
-GET /produtos
-GET /produtos?filter=NOME
-POST /produtos
-GET /produtos/:id
-PUT /produtos/:id
-DELETE /produtos/:id
+- GET /produtos
+- GET /produtos?filter=NOME
+- POST /produtos
+- GET /produtos/:id
+- PUT /produtos/:id
+- DELETE /produtos/:id
+- GET /produtos
+- GET /produtos?filter=NOME
+- POST /produtos
+- GET /produtos/:id
+- PUT /produtos/:id
+- DELETE /produtos/:id
