@@ -18,9 +18,9 @@ A entrega do seu código deve ser feita no formato de PR para este repositório 
 - GET /produtos/:id
 - PUT /produtos/:id
 - DELETE /produtos/:id
-- GET /produtos
-- GET /produtos?filter=NOME
-- POST /produtos
-- GET /produtos/:id
-- PUT /produtos/:id
-- DELETE /produtos/:id
+- GET /clientes
+- GET /clientes?filter=NOME
+- POST /clientes
+- GET /clientes/:id
+- PUT /clientes/:id
+- DELETE /clientes/:id
