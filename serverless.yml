@@ -1,0 +1,213 @@
+service: serverless-todos-rest-api
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: ap-southeast-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: arn:aws:dynamodb:ap-southeast-1:*:*
+
+resources:
+  Resources:
+    TodosTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: id
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: 'products'
+
+functions:
+  Productcreate:
+    handler: src/product/Productcreate.Productcreate
+    events:
+      - http:
+          path: product
+          method: post
+          cors: true
+  Productlist:
+    handler: src/product/Productlist.Productlist
+    events:
+      - http:
+          path: product
+          method: get
+          cors: true
+  Productget:
+    handler: src/product/Productget.Productget
+    events:
+      - http:
+          path: product/{id}
+          method: get
+          cors: true
+  Productupdate:
+    handler: src/product/Productupdate.Productupdate
+    events:
+      - http:
+          path: product/{id}
+          method: put
+          cors: true
+  Productdelete:
+    handler: src/product/Productdelete.Productdelete
+    events:
+      - http:
+          path: product/{id}
+          method: delete
+          cors: true
+# service: serverless-rest-api-henriqueVieira
+# frameworkVersion: '2'
+
+# provider:
+#   name: aws
+#   runtime: nodejs12.x
+#   region: ap-southeast-1
+#   iamRoleStatements:
+#     - Effect: Allow
+#       Action:
+#         - dynamodb:DescribeTable
+#         - dynamodb:Query
+#         - dynamodb:Scan
+#         - dynamodb:GetItem
+#         - dynamodb:PutItem
+#         - dynamodb:UpdateItem
+#         - dynamodb:DeleteItem
+#       Resource: arn:aws:dynamodb:ap-southeast-1:*:*
+
+# resources:
+#   Resources:
+#     ProducTable:
+#       Type: 'AWS::DynamoDB::Table'
+#       DeletionPolicy: Retain
+#       Properties:
+#         AttributeDefinitions:
+#           -
+#             AttributeName: id
+#             AttributeType: S
+#         KeySchema:
+#           -
+#             AttributeName: id
+#             KeyType: HASH
+#         ProvisionedThroughput:
+#           ReadCapacityUnits: 2
+#           WriteCapacityUnits: 2
+#         TableName: 'products-henrique'
+#     ClientsTable:
+#       Type: 'AWS::DynamoDB::Table'
+#       DeletionPolicy: Retain
+#       Properties:
+#         AttributeDefinitions:
+#           -
+#             AttributeName: id
+#             AttributeType: S
+#         KeySchema:
+#           -
+#             AttributeName: id
+#             KeyType: HASH
+#         ProvisionedThroughput:
+#           ReadCapacityUnits: 2
+#           WriteCapacityUnits: 2
+#         TableName: 'clients-henrique'
+
+# functions:
+#   Productcreate:
+#     handler: src/handler/product/product.Productcreate
+#     events:
+#       - http:
+#           path: product
+#           method: post
+#           cors: true
+#   Productlist:
+#     handler: src/handler/product/product.Productlist
+#     events:
+#       - http:
+#           path: product
+#           method: get
+#           cors: true
+#   Productget:
+#     handler: src/handler/product/product.Productget
+#     events:
+#       - http:
+#           path: product/{id}
+#           method: get
+#           cors: true
+#   Productupdate:
+#     handler: src/handler/product/product.Productupdate
+#     events:
+#       - http:
+#           path: product/{id}
+#           method: put
+#           cors: true
+#   Productdelete:
+#     handler: src/handler/product/product.Productdelete
+#     events:
+#       - http:
+#           path: product/{id}
+#           method: delete
+#           cors: true
+#   Productsearch:
+#     handler: src/handler/product/product.Productsearch
+#     events:
+#       - http:
+#           path: product
+#           method: get
+#           cors: true
+#   Clientcreate:
+#     handler: src/handler/product/product.Clientcreate
+#     events:
+#       - http:
+#           path: client
+#           method: post
+#           cors: true
+#   Clientlist:
+#     handler: src/handler/product/product.Clientlist
+#     events:
+#       - http:
+#           path: client
+#           method: get
+#           cors: true
+#   Clientget:
+#     handler: src/handler/product/product.Clientget
+#     events:
+#       - http:
+#           path: client/{id}
+#           method: get
+#           cors: true
+#   Clientupdate:
+#     handler: src/handler/product/product.Clientupdate
+#     events:
+#       - http:
+#           path: client/{id}
+#           method: put
+#           cors: true
+#   Clientdelete:
+#     handler: src/handler/product/product.Clientdelete
+#     events:
+#       - http:
+#           path: client/{id}
+#           method: delete
+#           cors: true
+#   Clientearch:
+#     handler: src/handler/product/product.Clientsearch
+#     events:
+#       - http:
+#           path: product
+#           method: get
+#           cors: true
